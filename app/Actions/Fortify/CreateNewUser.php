@@ -20,6 +20,7 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
+        //dd(config("myapp.excluded_emails"));
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => [
@@ -28,9 +29,17 @@ class CreateNewUser implements CreatesNewUsers
                 'email',
                 'max:255',
                 Rule::unique(User::class),
+                function ($input, $value, $fail) {
+                    if (in_array($value, config("myapp.excluded_emails"))) {
+                        $fail('This email is not allowed in our app');
+                    }
+                },
             ],
             'password' => $this->passwordRules(),
         ])->validate();
+
+
+        //in_array($this->request->email, config("myapp.excluded_emails"));
 
         return User::create([
             'name' => $input['name'],
