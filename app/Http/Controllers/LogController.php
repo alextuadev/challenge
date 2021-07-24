@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\LogCreated;
 use App\Models\Log;
+use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class LogController extends Controller
 {
@@ -26,12 +29,16 @@ class LogController extends Controller
             "task_id" => "required",
         ]);
 
-        $task_id = $request->task_id;
+        $task = Task::with('creator')->find($request->task_id);
+
         try {
-            Log::create($request->only(["comment", "task_id"]));
-            return redirect(route("task.show", ["task" => $task_id]))->with('status', 'Task created successfully');;
+            $log = Log::create($request->only(["comment", "task_id"]));
+            Mail::to($task->creator->email)
+                ->queue(new LogCreated($log, $task));
+
+            return redirect(route("task.show", ["task" => $task->id]))->with('status', 'Task created successfully');
         } catch (\Exception $e) {
-            return redirect(route("task.show", ["id" => $task_id]))->with('status', $e);;
+            return redirect(route("task.show", ["id" => $task->id]))->with('status', $e);;
         }
     }
 

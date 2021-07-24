@@ -29,4 +29,9 @@ class Task extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, "created_by");
+    }
 }
