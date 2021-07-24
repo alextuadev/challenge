@@ -33,6 +33,6 @@ Route::middleware('auth')->group(function () {
     /*Route::get('/dashboard', function () {
         return view('dashboard');
     });*/
-    Route::resource("/task", TaskController::class);
+    Route::resource("/task", TaskController::class)->middleware('verify_task');
     Route::resource("/logs", LogController::class);
 });

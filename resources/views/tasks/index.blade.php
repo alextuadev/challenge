@@ -8,12 +8,16 @@
                 {{ session('status') }}
             </div>
         @endif
+        @if (session('error'))
+            <div class="alert alert-danger" role="alert">
+                {{ session('error') }}
+            </div>
+        @endif
         <div class="row">
             <div class="col-12">
                 <a class="btn btn-primary" href="{{ route('task.create') }}">Create task</a>
             </div>
         </div>
-
 
         <div class="row">
             <div class="col-12">
