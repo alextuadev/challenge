@@ -33,7 +33,7 @@
                     </thead>
                     <tbody>
                         @foreach ($tasks as $item)
-                            <tr>
+                            <tr @if ($item->expired) class="expired" @endif>
                                 <td><a href="{{ route('task.show', ['task' => $item->id]) }}">{{ $item->id }}</a>
                                 </td>
                                 <td>{{ $item->user->name }}</td>
