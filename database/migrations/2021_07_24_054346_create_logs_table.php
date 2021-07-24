@@ -17,7 +17,7 @@ class CreateLogsTable extends Migration
             $table->id();
 
             $table->string("comment", 512);
-
+            $table->foreignId("task_id")->constrained();
             $table->timestamps();
         });
     }

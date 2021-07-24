@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\LogController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,9 +30,9 @@ Route::get('/register', [RegisterController::class, 'register'])->name('register
 Route::resource('/', InvoiceController::class);
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
+    /*Route::get('/dashboard', function () {
         return view('dashboard');
-    });
-    Route::resource("/tasks", TaskController::class);
-    Route::resource("/comments", LogController::class);
+    });*/
+    Route::resource("/task", TaskController::class);
+    Route::resource("/logs", LogController::class);
 });

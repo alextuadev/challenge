@@ -9,6 +9,6 @@ class Log extends Model
 {
     use HasFactory;
 
-    protected $table = 'logs';
-    protected $fillable = ["comment"];
+    protected $table = "logs";
+    protected $fillable = ["comment", "task_id"];
 }
