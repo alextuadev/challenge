@@ -62,12 +62,21 @@
             <x-challenge2 />
         </div>
 
+
+        <div class="row mb-5">
+            <h2>Desafio 3</h2>
+            <p>Hace click en el menu products y alli podran registrar un producto </p>
+        </div>
         <div class="row mb-5">
             <h2>Desafio 4</h2>
             <x-challenge4 />
         </div>
 
-
-
+        <div class="row mb-5">
+            <h2>Desafio 5</h2>
+            <p>Para este correr las migraciones con sus respectivos seeders</p>
+            <code>php artisan migrate --seed</code>
+            <p> usado mailtrap para el envio de los emails</p>
+        </div>
     </div>
 @endsection
