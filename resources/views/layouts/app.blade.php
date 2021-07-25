@@ -26,10 +26,14 @@
                     </a>
 
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                      <li>
-                        <a href="{{ route('task.index') }}"
-                            class="nav-link px-2 link-secondary">{{ __('Tasks') }}</a>
-                    </li>
+                        <li>
+                            <a href="{{ route('task.index') }}"
+                                class="nav-link px-2 link-secondary">{{ __('Tasks') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('product.create') }}"
+                                class="nav-link px-2 link-secondary">{{ __('Products') }}</a>
+                        </li>
                     </ul>
 
                     <div class="dropdown text-end">

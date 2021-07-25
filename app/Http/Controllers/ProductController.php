@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\product;
+use App\Models\Invoice;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -24,7 +25,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $invoices = Invoice::select(["id", "type"])->get();
+        return view("products.create", compact(["invoices"]));
     }
 
     /**
@@ -35,7 +37,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            "name" => "required|string|min:3|max:128",
+            "quantity" => "required|numeric",
+            "invoice_id" => "required|numeric",
+            "price" => "required|numeric"
+        ]);
+
+        $data = $request->all();
+        Product::create($data);
+
+        return redirect(route("product.create"))->with('status', 'Product created successfully');
     }
 
     /**

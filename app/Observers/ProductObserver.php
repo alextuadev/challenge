@@ -14,12 +14,11 @@ class ProductObserver
 
     public function created(Product $product)
     {
-        $result = Product::selectRaw("SUM(products.quantity * products.price) as total")
+        $result = Product::selectRaw("SUM(products.quantity * products.price) as totalProduct")
                     ->where("invoice_id", $product->invoice_id)
                     ->first();
-        
         $invoice = Invoice::find($product->invoice_id);
-        $invoice->total = $result->total;
+        $invoice->total = $result->totalProduct;
         $invoice->save();
     }
 

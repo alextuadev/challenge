@@ -3,6 +3,7 @@
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +26,9 @@ Route::get('/', function () {
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/register', [RegisterController::class, 'register'])->name('register');
+
+Route::get("/create-product", [ProductController::class, 'create'])->name('product.create');
+Route::post("/store-product", [ProductController::class, 'store'])->name('product.store');
 
 // desafio 1
 Route::resource('/', InvoiceController::class);
