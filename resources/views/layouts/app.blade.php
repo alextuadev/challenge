@@ -24,7 +24,12 @@
                     <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
                         {{ config('app.name', 'Laravel') }}
                     </a>
+
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                      <li>
+                        <a href="{{ route('task.index') }}"
+                            class="nav-link px-2 link-secondary">{{ __('Tasks') }}</a>
+                    </li>
                     </ul>
 
                     <div class="dropdown text-end">
@@ -32,7 +37,7 @@
                             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                                 <li>
                                     <a href="{{ route('login') }}"
-                                        class="nav-link px-2 link-secondary">{{ __('Sign in ') }}</a>
+                                        class="nav-link px-2 link-secondary">{{ __('Sign in') }}</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('register') }}"

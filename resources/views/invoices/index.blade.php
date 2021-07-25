@@ -42,10 +42,11 @@
                     <div class="card-body">
                         <h2 class="card-title">Desafío 1.3:</h2>
                         <div>Obtener todos los nombres de los productos cuyo valor final sea superior a $1.000.000 CLP:
+                            (partiendo de que el valor final es el quantity por el precio del producto)
                             <ul>
                                 @foreach ($products as $product)
                                     <li>
-                                        Productos: {{ $product->name }}
+                                        {{ $product->name }}: @money( $product->total)
                                     </li>
                                 @endforeach
                             </ul>
@@ -57,13 +58,13 @@
 
 
         <div class="row mb-5">
-          <h2>Desafio 2</h2>
-          <x-challenge2 />
+            <h2>Desafio 2</h2>
+            <x-challenge2 />
         </div>
 
         <div class="row mb-5">
-          <h2>Desafio 4</h2>
-          <x-challenge4 />
+            <h2>Desafio 4</h2>
+            <x-challenge4 />
         </div>
 
 

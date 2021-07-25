@@ -22,5 +22,10 @@ class Product extends Model
     {
         $query->where("products.price", ">", $value);
     }
+
+    public function getTotalAttribute()
+    {
+        return $this->quantity *$this->price;
+    }
     
 }

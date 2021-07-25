@@ -19,13 +19,14 @@ class InvoiceController extends Controller
 
         $ids = Invoice::with(["productsHigher100"]) //desafio 1.2
             ->get()
-            ->filter(function($item){ 
+            ->filter(function ($item) {
                 return count($item->productsHigher100) > 0;
             })->pluck("id");
 
-        $products = Product::select("name") //desafio 1.3
-            ->priceHigherThan(1000000)
-            ->get();
+        //desafio 1.3
+        $products = Product::cursor()->filter(function ($product) {
+            return $product->total >= 1000000;
+        });
 
         return view("invoices.index", compact(["invoices", "ids", "products"]));
     }
